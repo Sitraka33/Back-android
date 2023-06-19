@@ -6,6 +6,8 @@ const sequelize = new Sequelize('materiel', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
 });
+
+
 const materielRoutes = require('./routes/materielRoute')
 const testDatabaseConnection = async () => {
     try {
@@ -17,7 +19,7 @@ const testDatabaseConnection = async () => {
 };
 // Vos routes et fonctions de gestion des requêtes seront ajoutées ici
 
-app.use('/api', materielRoutes)
+app.use('/materiel', materielRoutes)
 app.listen(port, () => {
     console.log(`Serveur en cours d'exécution sur le port ${port}`);
     testDatabaseConnection();

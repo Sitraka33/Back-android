@@ -1,8 +1,6 @@
 const Materiel = require('../models/materielModel');
 
-// Récupérer tous les matériaux
 const getAllMateriels = async (req, res) => {
-    // Logique pour récupérer tous les matériaux à partir du modèle Material
     try {
         const materiels = await Materiel.findAll();
         res.json(materiels);
