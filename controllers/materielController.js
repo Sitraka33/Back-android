@@ -9,6 +9,17 @@ const getAllMateriels = async (req, res) => {
     }
 };
 
+const getFooter = async (req, res) => {
+    try {
+        const somme = await Materiel.sum('qte');
+        const mauvais = await Materiel.sum('qte', { where: { etat: 1 } });
+        const bon = await Materiel.sum('qte', { where: { etat: 2 } });
+        const abime = await Materiel.sum('qte', { where: { etat: 3 } });
+        res.json({somme : somme , mauvais : mauvais, bon : bon, abime : abime});
+    } catch (error) {
+        res.status(500).json({ error: 'Une erreur est survenue lors de la récupération footer' });
+    }
+}
 const createMateriel = async (req, res) => {
     const { design, etat, qte } = req.query;
 
@@ -67,6 +78,7 @@ const deleteMateriel = async (req, res) => {
 };
 module.exports = {
     getAllMateriels,
+    getFooter,
     updateMateriel,
     createMateriel,
     deleteMateriel
